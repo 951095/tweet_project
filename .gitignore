@@ -1,0 +1,24 @@
+# macOS/exFAT junk
+._*
+.DS_Store
+
+# Data & models (souvent trop lourds pour git)
+data/raw/
+data/processed/
+outputs/models/
+*.pkl
+*.h5
+*.pt
+*.onnx
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets
+.env

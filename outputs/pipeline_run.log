@@ -1,0 +1,27 @@
+2026-06-09 17:46:21.208030: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Epoch 1/8
+78/78 - 3s - 40ms/step - accuracy: 0.7032 - loss: 0.8950 - val_accuracy: 0.7740 - val_loss: 0.5606
+Epoch 2/8
+78/78 - 2s - 20ms/step - accuracy: 0.8272 - loss: 0.4651 - val_accuracy: 0.7711 - val_loss: 0.5539
+Epoch 3/8
+78/78 - 1s - 19ms/step - accuracy: 0.8946 - loss: 0.2917 - val_accuracy: 0.7885 - val_loss: 0.5791
+Epoch 4/8
+78/78 - 1s - 19ms/step - accuracy: 0.9383 - loss: 0.1840 - val_accuracy: 0.7871 - val_loss: 0.6523
+Epoch 1/3
+475/475 - 6s - 14ms/step - accuracy: 0.8453 - loss: 0.4144 - val_accuracy: 0.8961 - val_loss: 0.2770
+Epoch 2/3
+475/475 - 6s - 12ms/step - accuracy: 0.9024 - loss: 0.2471 - val_accuracy: 0.8985 - val_loss: 0.2553
+Epoch 3/3
+475/475 - 6s - 13ms/step - accuracy: 0.9090 - loss: 0.2211 - val_accuracy: 0.8983 - val_loss: 0.2526
+Epoch 1/8
+78/78 - 4s - 53ms/step - accuracy: 0.4624 - loss: 1.0773 - val_accuracy: 0.6687 - val_loss: 0.8715
+Epoch 2/8
+78/78 - 3s - 33ms/step - accuracy: 0.5842 - loss: 0.9535 - val_accuracy: 0.6786 - val_loss: 0.7764
+Epoch 3/8
+78/78 - 3s - 34ms/step - accuracy: 0.6625 - loss: 0.8096 - val_accuracy: 0.7387 - val_loss: 0.6504
+Epoch 4/8
+78/78 - 2s - 32ms/step - accuracy: 0.7228 - loss: 0.6895 - val_accuracy: 0.7477 - val_loss: 0.5978
+Epoch 5/8
+78/78 - 3s - 34ms/step - accuracy: 0.7857 - loss: 0.5608 - val_accuracy: 0.7401 - val_loss: 0.6253
+Epoch 6/8

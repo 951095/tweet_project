@@ -1,0 +1,17 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+tensorflow
+keras
+streamlit
+joblib
+jupyter
+nbformat
+nbconvert
+# DistilBERT (feature extraction + optional fine-tuning).
+# Note: torch is pinned to the last release with Intel macOS (x86_64) wheels,
+# which in turn requires transformers < 5.
+torch<2.3
+transformers>=4.40,<5
