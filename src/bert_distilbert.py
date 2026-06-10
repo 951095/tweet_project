@@ -190,8 +190,19 @@ def _merge_into_comparison(result: dict[str, object]) -> None:
         table = pd.DataFrame([result])
     table = table.sort_values("macro_f1", ascending=False).reset_index(drop=True)
     table.to_csv(path, index=False)
+    _merge_into_metadata(table)
     print("\nUpdated comparison table:")
     print(table[["model", "accuracy", "macro_f1", "weighted_f1"]].to_string(index=False))
+
+
+def _merge_into_metadata(table: pd.DataFrame) -> None:
+    """Keep artifacts/metadata.json in sync with the comparison table."""
+    path = ARTIFACTS_DIR / "metadata.json"
+    if not path.exists():
+        return
+    metadata = json.loads(path.read_text(encoding="utf-8"))
+    metadata["results"] = table.to_dict(orient="records")
+    path.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
 
 
 def main() -> None:

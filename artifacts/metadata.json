@@ -28,6 +28,24 @@
       "positive_support": 354
     },
     {
+      "model": "DistilBERT (fine-tuned)",
+      "accuracy": 0.7937999060591827,
+      "macro_f1": 0.7430453966101785,
+      "weighted_f1": 0.8005582225062992,
+      "negative_precision": 0.9064976228209192,
+      "negative_recall": 0.8417954378219279,
+      "negative_f1": 0.8729492560091568,
+      "negative_support": 1359,
+      "neutral_precision": 0.5472,
+      "neutral_recall": 0.7755102040816326,
+      "neutral_f1": 0.6416510318949343,
+      "neutral_support": 441,
+      "positive_precision": 0.8429752066115702,
+      "positive_recall": 0.6200607902735562,
+      "positive_f1": 0.7145359019264448,
+      "positive_support": 329
+    },
+    {
       "model": "TF-IDF + ANN",
       "accuracy": 0.7928051001821493,
       "macro_f1": 0.7416268636571396,

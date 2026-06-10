@@ -36,6 +36,10 @@ pip install -r requirements.txt
 > **Note DistilBERT** — `torch` et `transformers` ne sont nécessaires que pour la
 > partie DistilBERT. S'ils ne sont pas installés, le pipeline principal s'exécute
 > quand même et saute proprement cette étape (avec un message).
+>
+> Le pin `torch<2.3` ne s'applique qu'aux Mac Intel (derniers wheels x86_64
+> disponibles) ; sous Windows et Linux, `pip` installe une version récente de
+> torch grâce aux marqueurs d'environnement du `requirements.txt`.
 
 ---
 
@@ -170,18 +174,35 @@ projet_tweet/
 
 ## Modèles et résultats
 
-| Représentation | Modèle |
-|---|---|
-| TF-IDF (1-2 grammes) | Régression logistique *(modèle déployé)* |
-| TF-IDF | ANN (MLP) |
-| Word2Vec skip-gram (entraîné sur le corpus) | CNN |
-| Word2Vec skip-gram | BiLSTM |
-| Word2Vec skip-gram | BiLSTM + attention |
-| DistilBERT | features + LogReg, ou fine-tuning *(optionnel)* |
+Scores mesurés sur le jeu de test figé (détail complet par classe dans
+`outputs/tables/comparaison_modeles.csv`) :
 
-Le classement complet est dans `outputs/tables/comparaison_modeles.csv`. À ce
-jour, la **régression logistique TF-IDF** offre le meilleur compromis
+| Représentation | Modèle | Accuracy | F1-macro |
+|---|---|---|---|
+| TF-IDF (1-2 grammes) | Régression logistique *(modèle déployé)* | 0.798 | **0.748** |
+| DistilBERT | Fine-tuning bout-en-bout *(optionnel)* | 0.794 | 0.743 |
+| TF-IDF | ANN (MLP) | 0.793 | 0.742 |
+| Word2Vec skip-gram (entraîné sur le corpus) | BiLSTM | 0.774 | 0.729 |
+| Word2Vec skip-gram | CNN | 0.777 | 0.729 |
+| Word2Vec skip-gram | BiLSTM + attention | 0.769 | 0.727 |
+
+La **régression logistique TF-IDF** offre le meilleur compromis
 F1-macro / coût / interprétabilité ; c'est le modèle servi par l'application.
+La classe `neutral` reste la plus difficile pour tous les modèles (F1 ≈ 0.63-0.65),
+d'où le choix du F1-macro comme métrique principale.
+
+---
+
+## Correspondance avec le cahier des charges
+
+| Lot (énoncé PDF) | Où c'est traité |
+|---|---|
+| **Lot 0** — Cadrage business, protocole figé | `reports/rapport_synthese.md`, notebook §0, split stratifié `random_state=42` |
+| **Lot 1** — EDA (≥4 visus), nettoyage, split, déséquilibre | `generate_eda` + `clean_tweet` + `create_splits` (`src/project_pipeline.py`), figures `outputs/figures/01-05`, `class_weight="balanced"` |
+| **Lot 2** — TF-IDF, Word2Vec (+ voisins), BERT (opt.) | `src/project_pipeline.py` (TF-IDF, skip-gram maison, `word2vec_voisins.csv`), `src/bert_distilbert.py` |
+| **Lot 3** — Référence, CNN, LSTM, Attention | LogReg/ANN TF-IDF, CNN, BiLSTM, BiLSTM+attention, fine-tuning DistilBERT |
+| **Lot 4** — Métriques, comparaison, erreurs, interprétabilité | `comparaison_modeles.csv`, matrices de confusion, courbes d'apprentissage, `analyse_erreurs_*.csv`, top termes TF-IDF + poids d'attention |
+| **Lot 5** — Application de démonstration | `app/streamlit_app.py` (prédiction + priorisation métier) |
 
 ---
 
@@ -194,7 +215,3 @@ F1-macro / coût / interprétabilité ; c'est le modèle servi par l'application
 - Rapport de synthèse : `reports/rapport_synthese.md` / `.pdf`
 - Figures et tableaux : `outputs/figures/`, `outputs/tables/`
 - Modèle déployable : `artifacts/selected_tfidf_model.joblib`
-</content>
-</invoke>
-
-python -m src.bert_distilbert --finetune --epochs 3 
