@@ -59,7 +59,9 @@ def main() -> None:
         md(
             "## 2. Representations\n\n"
             "- TF-IDF: baseline explicable avec n-grammes.\n"
-            "- Word2Vec-style: skip-gram entraine sur le corpus, reutilise comme initialisation des CNN/LSTM/Attention.\n\n"
+            "- Word2Vec-style: skip-gram entraine sur le corpus, reutilise comme initialisation des CNN/LSTM/Attention.\n"
+            "- DistilBERT: embeddings contextuels pre-entraines (`distilbert-base-uncased`), "
+            "utilises en extraction de features (modele gele + regression logistique) et en fine-tuning bout-en-bout.\n\n"
             "Les voisins semantiques sont sauvegardes dans `outputs/tables/word2vec_voisins.csv`."
         ),
         code(
@@ -72,7 +74,13 @@ def main() -> None:
         md(
             "## 3. Modelisation\n\n"
             "Modeles entraines: regression logistique TF-IDF, ANN TF-IDF, CNN Word2Vec, BiLSTM Word2Vec, "
-            "BiLSTM avec attention."
+            "BiLSTM avec attention, et DistilBERT (features gelees + LogReg, ou fine-tuning).\n\n"
+            "La partie DistilBERT se lance separement (elle necessite `torch` et `transformers`):\n\n"
+            "```bash\n"
+            "python -m src.bert_distilbert              # extraction de features (rapide sur CPU)\n"
+            "python -m src.bert_distilbert --finetune   # fine-tuning bout-en-bout (lent sur CPU)\n"
+            "```\n\n"
+            "Les resultats sont fusionnes automatiquement dans `outputs/tables/comparaison_modeles.csv`."
         ),
         code(
             "results_path = Path('outputs/tables/comparaison_modeles.csv')\n"

@@ -11,7 +11,8 @@ jupyter
 nbformat
 nbconvert
 # DistilBERT (feature extraction + optional fine-tuning).
-# Note: torch is pinned to the last release with Intel macOS (x86_64) wheels,
-# which in turn requires transformers < 5.
-torch<2.3
+# torch<2.3 is the last release with Intel macOS (x86_64) wheels; on every
+# other platform (Windows, Linux, Apple Silicon) any recent torch works.
+torch<2.3; sys_platform == "darwin" and platform_machine == "x86_64"
+torch; sys_platform != "darwin" or platform_machine != "x86_64"
 transformers>=4.40,<5
