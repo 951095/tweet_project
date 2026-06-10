@@ -68,6 +68,13 @@ python -m src.bert_distilbert --finetune --epochs 3
 La ligne DistilBERT est automatiquement ajoutée à
 `outputs/tables/comparaison_modeles.csv`.
 
+> **⚠️ Poids non versionnés** — le modèle fine-tuné
+> `artifacts/distilbert_finetuned/model.safetensors` (~256 Mo) **n'est pas sur
+> GitHub** (au-delà de la limite de 100 Mo, ignoré via `.gitignore`). Pour le
+> reconstituer, relancer le fine-tuning ci-dessus (`--finetune`) ; les poids
+> seront régénérés localement dans `artifacts/distilbert_finetuned/`. Le reste de
+> la partie DistilBERT (extraction de features) ne nécessite pas ce fichier.
+
 ### 3. Application de démonstration (Streamlit)
 
 Nécessite que le modèle déployable existe (étape 1 réalisée au moins une fois).
@@ -138,7 +145,10 @@ projet_tweet/
 
 > Les dossiers `data/processed/`, `artifacts/`, `outputs/` et `reports/` sont
 > **régénérés** par le pipeline ; ils sont versionnés ici pour fournir des
-> résultats prêts à consulter.
+> résultats prêts à consulter. **Exception** : les poids fine-tunés
+> `artifacts/distilbert_finetuned/model.safetensors` (~256 Mo) ne sont pas sur
+> GitHub — voir [DistilBERT (optionnel)](#2-distilbert-optionnel) pour les
+> régénérer.
 
 ---
 
