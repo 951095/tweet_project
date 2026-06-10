@@ -10,6 +10,7 @@ outputs/models/
 *.h5
 *.pt
 *.onnx
+*.safetensors
 
 # Python
 __pycache__/
