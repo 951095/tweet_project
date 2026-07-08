@@ -1,4 +1,4 @@
-# Projet NLP — Sentiment des tweets aériens.
+# Projet NLP — Sentiment des tweets aériens
 
 Classification de sentiment (`negative`, `neutral`, `positive`) sur le dataset
 **US Airline Sentiment** (~14 600 tweets adressés à six compagnies aériennes
