@@ -8,7 +8,7 @@ Le projet couvre toute la chaîne : exploration → nettoyage → représentatio
 (TF-IDF, Word2Vec maison, DistilBERT) → modèles classiques et profonds →
 évaluation, interprétabilité et démonstration déployable.
 
----
+--
 
 ## Sommaire
 
