@@ -19,7 +19,7 @@ Le projet couvre toute la chaîne : exploration → nettoyage → représentatio
 5. [Modèles et résultats](#modèles-et-résultats)
 6. [Livrables](#livrables)
 
----
+--
 
 ## Installation
 
